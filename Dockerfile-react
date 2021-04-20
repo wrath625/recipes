@@ -1,0 +1,15 @@
+FROM node:15.14.0-buster
+
+RUN mkdir -p /opt/
+
+ADD frontend /opt/frontend
+
+ENV NODE_PATH /opt/node_modules
+ENV PATH=$PATH:/opt/node_modules/.bin
+
+WORKDIR /opt/frontend
+
+RUN npm install
+
+CMD npm start
+

@@ -1,0 +1,110 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+bin/
+
+develop-eggs/
+
+eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
+
+#SQLITE
+*.sqlite3
+
+.DS_Store
+
+#Project Files
+
+media/*
+
+!media/users/default/default-avatar.png
+!media/users/default/default_group_icon.png
+!media/groups
+
+smartpager/local_settings.py
+smartpager/settings.py
+
+#IntelliJ/Pycharm
+
+.idea
+
+*.ipynb
+
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+
+app/adtsql/*
+adtsql/*
+*localhost.sql
+app/media/
+app/static/
+frontend/build/
+docker-compose-prod.yml
+prod.env
+.floo
+.flooignore
+app/celerybeat-schedule
+app/celerybeat.pid

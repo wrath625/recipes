@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./app:/opt/app
+    env_file:
+      - variables.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - wait_for_postgres
+    command: python manage.py runserver 0.0.0.0:8000
+  postgres:
+    image: postgres:13.2
+    env_file:
+      - variables.env
+    ports:
+      - 15432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+  wait_for_postgres:
+    image: dadarek/wait-for-dependencies
+    depends_on:
+      - postgres
+    command: postgres:5432
+  react:
+    build: 
+      context: .
+      dockerfile: Dockerfile-react
+    volumes:
+      - ./frontend/src:/opt/frontend/src
+      - ./frontend/build:/opt/frontend/build
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    command: npm start
