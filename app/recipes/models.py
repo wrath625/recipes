@@ -19,7 +19,6 @@ class Unit(models.Model):
     name = models.CharField(max_length=128, validators=[MinLengthValidator(1)])
     slug = AutoSlugField(unique=True, populate_from='name', always_update=True)
     description = models.TextField(blank=True, null=True)
-    grams_equivalent = models.DecimalField(default=0, decimal_places=2, max_digits=32)
 
     def __str__(self):
         return self.name
@@ -29,7 +28,7 @@ class AutoOrder():
         if not self.pk:
             with transaction.atomic():
                 # Only for create
-                results = type(self).objects.filter(step=self.step).aggregate(Max('order'))
+                results = type(self).objects.filter(step=self.step or self).aggregate(Max('order'))
 
                 current_order = results['order__max']
                 if current_order is None:
@@ -49,6 +48,7 @@ class Ingredient(AutoOrder, models.Model):
     unit = models.ForeignKey(Unit, on_delete=models.PROTECT, null=True, blank=True)
     unit_note = models.CharField(max_length=256, null=True, blank=True)
     amount = models.DecimalField(default=0, decimal_places=2, max_digits=32)
+    amount_in_g = models.DecimalField(default=None, null=True, blank=True, decimal_places=2, max_digits=32)
     primary = models.BooleanField(default=False)
     optional = models.BooleanField(default=False)
     order = models.IntegerField(default=1)
@@ -75,7 +75,7 @@ class Procedure(AutoOrder, models.Model):
         return f"({self.id}) {self.description}"
 
 
-class Step(AutoOrder, models.Model):
+class Step(models.Model):
     name = models.CharField(max_length=128, default='', blank=True)
     order = models.IntegerField(default=1)
     recipe = models.ForeignKey('Recipe', related_name="steps", on_delete=models.CASCADE)
@@ -91,7 +91,6 @@ class Step(AutoOrder, models.Model):
 class Keyword(models.Model):
     name = models.CharField(max_length=64)
     slug = AutoSlugField(unique=True, populate_from='name', always_update=True)
-    icon = models.CharField(max_length=16, blank=True, null=True)
     description = models.TextField(default="", blank=True)
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
