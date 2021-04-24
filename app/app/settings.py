@@ -28,7 +28,12 @@ SECRET_KEY = '!ep+r_a04q6vahv#c6!ezy6*#ymsdj5%064n+!eex7_gunujl1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.138", "localhost"]
+ALLOWED_HOSTS = [
+    "192.168.1.138",
+    "localhost",
+    "recipes.gardiner.local",
+    "192.168.1.25",
+    ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://192.168.1.138:3000",

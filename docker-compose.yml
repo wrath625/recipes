@@ -11,6 +11,7 @@ services:
     depends_on:
       - wait_for_postgres
     command: python manage.py runserver 0.0.0.0:8000
+    image: 'wrath625/recipes_web:latest'
   postgres:
     image: postgres:13.2
     env_file:
