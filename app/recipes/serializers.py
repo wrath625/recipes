@@ -42,7 +42,7 @@ class FoodSerializer(ModelSerializer):
 
 class IngredientSerializer(WritableNestedModelSerializer):
     food = FoodSerializer()
-    unit = UnitSerializer()
+    unit = UnitSerializer(allow_null=True)
 
     class Meta:
         model = Ingredient
@@ -104,7 +104,7 @@ class StepSerializer(WritableNestedModelSerializer):
 class RecipeSerializer(WritableNestedModelSerializer):
     keywords = KeywordSerializer(many=True, required=False)
     steps = StepSerializer(many=True)
-    image = Base64ImageField(required=False)
+    image = Base64ImageField(allow_null=True)
 
     class Meta:
         model = Recipe
