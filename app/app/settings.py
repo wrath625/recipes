@@ -33,6 +33,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "recipes.gardiner.local",
     "192.168.1.25",
+    "recipes.gardiner.house",
+    "*.gardiner.*",
     ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -158,12 +160,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 FILE_UPLOAD_PERMISSIONS = 0o644
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
-STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
