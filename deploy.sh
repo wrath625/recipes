@@ -2,7 +2,7 @@
 
 # Variables
 remoteUserName="james"
-remoteServer="gardiner.local"
+remoteServer="192.168.1.25"
 remotePath="/share/configs/nginx/www/recipes/frontend"
 localPath="./frontend/build/"
 params=$1
